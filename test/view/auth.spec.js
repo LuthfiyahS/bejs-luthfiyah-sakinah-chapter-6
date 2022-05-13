@@ -37,8 +37,6 @@ describe('Endpoint for view regist and login', () => {
         password: '1',
       })
     expect(res.statusCode).toEqual(400)
-    // expect(res.body).toHaveProperty('message')
-    // expect(res.body.message).toEqual("Failed! Username is already in use!")
   })
    it('should NOT create a new account', async () => {
     const res = await request(app)
@@ -49,8 +47,6 @@ describe('Endpoint for view regist and login', () => {
         password: '1',
       })
     expect(res.statusCode).toEqual(400)
-    // expect(res.body).toHaveProperty('message')
-    // expect(res.body.message).toEqual("Failed! Email is already in use!")
   })
   it('should TRUE LOGIN account', async () => {
     const res = await request(app)
