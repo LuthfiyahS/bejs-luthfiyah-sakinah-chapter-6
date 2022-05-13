@@ -8,16 +8,16 @@ exports.index = (req, res, next) => {
       if(user_games){
         res.status(200).render('pages/user_games/', { user_games,moment })
       }else{
-        res.render('error', { status: res.status(404),error:'Data tidak ditemukan' })
+        res.status(404).render('error', { status: res.status(404),error:'Data tidak ditemukan' })
       }
     })
     .catch((error) => {
-      res.render('error', { status: res.status(500),error: error.message })
+      res.status(500).render('error', { status: res.status(500),error: error.message })
     });
 };
 
 exports.addUserGames = (req, res, next) => {
-  res.render("pages/user_games/add")
+  res.status(200).render("pages/user_games/add")
 };
 
 exports.createUserGames = (req, res, next) => {

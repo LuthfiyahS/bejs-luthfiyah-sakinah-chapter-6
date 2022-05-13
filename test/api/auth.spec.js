@@ -10,10 +10,23 @@ describe('Endpoint API ', () => {
       .send({
         username: 'testing',
         password: '1',
+        email: 'iniemailnya@gmail.com'
       })
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('message')
     expect(res.body).toHaveProperty('data')
+  })
+
+  it('/register : Should NOT register because username and password doesn`t match', async () => {
+    const res = await request(app)
+      .post('/register')
+      .send({
+        username: 'testingsc',
+        password: '1',
+        email: 'iniemailnya@gmail.com'
+      })
+    expect(res.statusCode).toEqual(200)
+    expect(res.body).toHaveProperty('message')
   })
   
   it('Should compare hashing password', async () => {
@@ -26,7 +39,7 @@ describe('Endpoint API ', () => {
     const res = await request(app)
       .post('/login')
       .send({
-        username: 'testiscool',
+        username: 'testing',
         password: '1',
       })
     expect(res.statusCode).toEqual(200)
