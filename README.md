@@ -29,11 +29,7 @@ http://localhost:3000/v1/view
 Semangat!
 
 ## Getting started CH SEKARANG
-
+untuk test pakai npm test
 LINK 1 PAKAI GITHUB SUDAH CICD 
     Link deploy heroku https://bejs-chapter-06.herokuapp.com/ 
     Link repo https://github.com/LuthfiyahS/bejs-luthfiyah-sakinah-chapter-6/
-
-LINK 2 PAKAI GITLAB BELUM CICD TERKENDALA VERIFY CC
-    Link deploy heroku https://be-js-challenge-06.herokuapp.com/
-    Link repo https://gitlab.com/LuthfiyahS/chapter-06-bejs
