@@ -16,7 +16,10 @@ router.get('/', (req, res) => {
     res.render('login')
 })
 
-router.use("/dashboard", checkAuthenticated, (req, res) => {res.render('pages/index')})
+router.use("/dashboard", checkAuthenticated, (req, res) => {
+  let user_current = req.user.dataValues
+  console.log(user_current)
+  res.render('pages/index', {user_current})})
 router.use("/user-games", checkAuthenticated, usergames)
 router.use("/user-games-biodata",checkAuthenticated, usergamesbiodata)
 router.use("/user-games-history",checkAuthenticated, usergameshistory)

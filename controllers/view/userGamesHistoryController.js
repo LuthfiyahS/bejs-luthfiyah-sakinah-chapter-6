@@ -5,14 +5,16 @@ const moment = require("moment");
 exports.get = (req, res, next) => {
   UserGamesHistory.findAll({ include: [{model: UserGames, as : "user"}] })
     .then((user_games_history) => {
-        res.status(200).render('pages/user_games_history/', { user_games_history,moment})
+      let user_current = req.user.dataValues
+      res.status(200).render('pages/user_games_history/', { user_games_history,moment,user_current})
     })
     .catch((error) => {
       res.status(500).render('errors/error', { status: 500,message: error.message })
     });
 };
 exports.add = (req, res, next) => {
-    res.render("pages/user_games_history/add")
+    let user_current = req.user.dataValues
+    res.render("pages/user_games_history/add",{user_current})
   };
   
 exports.create = (req, res, next) => {
@@ -28,9 +30,7 @@ exports.create = (req, res, next) => {
 
   checkUserGames(user_id, (data) => {
     if (!data) {
-      return res.status(200).json({
-        'message': 'User game id not found',
-      })
+      return res.status(200).render('errors/error', { status: 200,message: "User game id not found!" })
     }
 
     let playtime = getIntervalTime(session_end, session_start)
@@ -47,10 +47,8 @@ exports.create = (req, res, next) => {
       res.status(500).render('errors/error', { status: 500,message: error.message })
     });
   }, (error) => {
-    console.log(error)
-    return res.status(400).json({
-      'message': 'Failed'
-    })
+    //console.log(error)
+    return res.status(400).render('errors/error', { status: 400,message: 'Failed' })
   })
 };
 
@@ -58,10 +56,11 @@ exports.getUserGamesHistoryById = (req, res, next) => {
   const id = req.params.id;
   UserGamesHistory.findAll({include: [{model: UserGames, as : "user"}],where: { user_id:id}})
     .then((user_games_history) => {
+      let user_current = req.user.dataValues
         if (!user_games_history) {
-            res.status(400).render("pages/user_games_history/add",{user_id:id})
+            res.status(400).render("pages/user_games_history/add",{user_id:id,user_current})
         }else{
-            res.status(200).render("pages/user_games_history/show",{user_games_history,moment,user_id:id})
+            res.status(200).render("pages/user_games_history/show",{user_games_history,moment,user_id:id,user_current})
         }
     })
     .catch((error) => {
@@ -120,16 +119,12 @@ exports.update = (req, res, next) => {
 
   checkUserGames(userhistory_data.user_id, (data) => {
     if (!data) {
-      return res.status(200).json({
-        'message': 'User game id not found',
-      })
+      return res.status(200).render('errors/error', { status: 200,message: 'User game id not found' })
     }
 
     checkBefore(id, (data) => {
       if (!data) {
-        return res.status(200).json({
-          'message': 'Data not found',
-        })
+        return res.status(200).render('errors/error', { status: 200,message: 'User game id not found' })
       }
 
       UserGamesHistory.update(userhistory_data, query).then((userhistory) => {
@@ -139,16 +134,12 @@ exports.update = (req, res, next) => {
         next(error);
       });
     }, (err) => {
-      console.log(err)
-      return res.status(400).json({
-        'message': 'Failed'
-      })
+      //console.log(err)
+      return res.status(400).render('errors/error', { status: 400,message: 'Failed' })
     })
   }, (err) => {
-    console.log(err)
-    return res.status(400).json({
-      'message': 'Failed'
-    })
+    //console.log(err)
+    return res.status(400).render('errors/error', { status: 400,message: 'Failed' })
   })
 };
 

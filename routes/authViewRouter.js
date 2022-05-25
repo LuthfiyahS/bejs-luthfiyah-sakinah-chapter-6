@@ -23,7 +23,7 @@ router.get('/register', ctl.register)
 router.post('/registers', ctl.registerproses)
 router.post('/logins',checkNotAuthenticated,passport.authenticate('local',{
     successRedirect: 'dashboard',
-    failureMessage:'login',
+    failureRedirect:'login',
     failureFlash:true
 }) )
 router.get("/logout", (req,res)=>{

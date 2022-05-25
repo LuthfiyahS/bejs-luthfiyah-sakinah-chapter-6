@@ -6,7 +6,9 @@ exports.index = (req, res, next) => {
   UserGames.findAll()
     .then((user_games) => {
       if(user_games){
-        res.status(200).render('pages/user_games/', { user_games,moment })
+        let user_current = req.user.dataValues
+        //console.log(user_current)
+        res.status(200).render('pages/user_games/', { user_games,moment,user_current })
       }else{
         res.status(404).render('error', { status: res.status(404),error:'Data tidak ditemukan' })
       }
@@ -17,7 +19,8 @@ exports.index = (req, res, next) => {
 };
 
 exports.addUserGames = (req, res, next) => {
-  res.status(200).render("pages/user_games/add")
+  let user_current = req.user.dataValues
+  res.status(200).render("pages/user_games/add",{user_current})
 };
 
 exports.createUserGames = (req, res, next) => {
@@ -72,7 +75,8 @@ exports.show = (req, res, next) => {
       if (!user_games) {
         res.status(404).render('errors/error', { status: 404,message: "Failed! Data Not Found!" })
       }
-      res.status(200).render("pages/user_games/update", { user_games,moment});
+      let user_current = req.user.dataValues
+      res.status(200).render("pages/user_games/update", { user_games,moment,user_current});
     })
     .catch((error) => {
       res.status(500).render('errors/error', { status: 500,message:  error.message})

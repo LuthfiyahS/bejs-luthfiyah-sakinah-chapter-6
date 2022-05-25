@@ -4,10 +4,8 @@ const moment = require("moment");
 exports.get =  (req, res, next) => {
   UserGamesBiodata.findAll({ include: [{model: UserGames, as : "user"}] })
     .then((user_games_biodata) => {
-        let user_current = req.user
-        let token = req?.session?.token
-      
-        console.log(user_current)
+        let user_current = req.user.dataValues
+        //console.log(user_current)
         res.status(200).render('pages/user_games_biodata/', { user_games_biodata,moment, token: token, user_current: user_current })
     })
     .catch((error) => {
@@ -16,7 +14,8 @@ exports.get =  (req, res, next) => {
 };
 
 exports.add = (req, res, next) => {
-    res.render("pages/user_games_biodata/add")
+    let user_current = req.user.dataValues
+    res.render("pages/user_games_biodata/add",{user_current})
   };
   
 exports.create = (req, res, next) => {
@@ -32,9 +31,7 @@ exports.create = (req, res, next) => {
 
   checkUserGames(user_id, (data) => {
     if (!data) {
-      return res.status(200).json({
-        'message': 'User game id not found',
-      })
+      return res.status(200).render('errors/error', { status: 200,message: 'User game id not found' })
     }
 
     UserGamesBiodata.create({
@@ -50,10 +47,8 @@ exports.create = (req, res, next) => {
       res.status(500).render('errors/error', { status: 500,message: error.message })
     })
   }, (error) => {
-    console.log(error)
-    return res.status(400).json({
-      'message': 'Failed'
-    })
+    //console.log(error)
+    return res.status(400).render('errors/error', { status: 400,message: 'Failed' })
   })
 };
 
@@ -64,10 +59,11 @@ exports.getUserGamesBiodataById = (req, res, next) => {
     where: { user_id: req.params.id }
   })
     .then((user_games_biodata) => {
+      let user_current = req.user.dataValues
       if (!user_games_biodata) {
-        res.status(400).render("pages/user_games_biodata/add",{user_id:id})
+        res.status(400).render("pages/user_games_biodata/add",{user_id:id,user_current})
       }else{
-        res.status(200).render("pages/user_games_biodata/show",{user_games_biodata,moment})
+        res.status(200).render("pages/user_games_biodata/show",{user_games_biodata,moment,user_current})
       }
     })
     .catch((error) => {
@@ -91,8 +87,6 @@ exports.update =  (req, res, next) => {
       id: id
     }
   }
-console.log(id)
-console.log(userbiodata_data)
   const checkUserGames = (user_id, success, failed) => {
     UserGames.findOne({ where: { id: user_id } }).then((UserGames) => {
       return success(UserGames)
@@ -111,16 +105,16 @@ console.log(userbiodata_data)
 
   checkUserGames(userbiodata_data.user_id, (data) => {
     if (!data) {
-      return res.status(200).json({
-        'message': 'User game id not found',
-      })
+      if (!data) {
+        return res.status(200).render('errors/error', { status: 200,message: 'User game id not found' })
+      }
     }
 
     checkBefore(id, (data) => {
       if (!data) {
-        return res.status(200).json({
-          'message': 'Data not found',
-        })
+        if (!data) {
+          return res.status(200).render('errors/error', { status: 200,message: 'Data not found' })
+        }
       }
 
       UserGamesBiodata.update(userbiodata_data, query).then((userbiodata_data) => {
@@ -129,16 +123,10 @@ console.log(userbiodata_data)
         res.status(500).render('errors/error', { status: 500,message: error.message })
       });
     }, (err) => {
-      console.log(err)
-      return res.status(400).json({
-        'message': 'Failed'
-      })
+      return res.status(400).render('errors/error', { status: 400,message: error.message })
     })
   }, (err) => {
-    console.log(err)
-    return res.status(400).json({
-      'message': 'Failed'
-    })
+    return res.status(400).render('errors/error', { status: 400,message: error.message })
   })
 };
 
@@ -148,18 +136,15 @@ exports.delete =  (req, res, next) => {
     id: req.body?.id,
     user_id: req.body?.user_id,
   }
-  console.log(`idnya ${userbiodata_data.id}`)
   UserGamesBiodata.findByPk(id)
     .then((data) => {
       if (!data) {
-        const error = new Error(`Could not find user games biodata with id = ${id}`);
-        error.status = 404;
-        throw error;
+        res.status(404).render('errors/error', { status: 404,message: `Could not find user games biodata with id = ${id}` })
       }
       UserGamesBiodata.destroy({
         where: { id },
       });
-      console.log(id)
+      //console.log(id)
       res.status(200).redirect(`/user-games/biodata/${userbiodata_data.user_id}`);
     })
     .catch((error) => {
@@ -172,14 +157,12 @@ exports.del =  (req, res, next) => {
   UserGamesBiodata.findByPk(id)
     .then((data) => {
       if (!data) {
-        const error = new Error(`Could not find user games biodata with id = ${id}`);
-        error.status = 404;
-        throw error;
+        res.status(404).render('errors/error', { status: 404,message: `Could not find user games biodata with id = ${id}` })
       }
       UserGamesBiodata.destroy({
         where: { id },
       });
-      console.log(id)
+      //console.log(id)
       res.status(200).redirect(`/user-games-biodata`);
     })
     .catch((error) => {
