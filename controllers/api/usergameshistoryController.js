@@ -9,10 +9,10 @@ exports.getUserGamesHistory = (req, res, next) => {
         data: user_games_history,
       });
     })
-    .catch((error) => {
-      if (!error.status) error.status = 500;
-      next(error);
-    });
+    // .catch((error) => {
+    //   if (!error.status) error.status = 500;
+    //   next(error);
+    // });
 };
 
 exports.addUserGamesHistory = (req, res, next) => {
@@ -133,11 +133,6 @@ exports.updateUserGamesHistory = (req, res, next) => {
         if (!error.status) error.status = 500;
         next(error);
       });
-    }, (err) => {
-      console.log(err)
-      return res.status(400).json({
-        'message': 'Failed'
-      })
     })
   }, (err) => {
     console.log(err)

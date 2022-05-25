@@ -14,11 +14,11 @@ exports.getUserGames = (req, res, next) => {
         data: user_games,
       });
     })
-    .catch((error) => {
-      res.status(500).json({
-        message : error.message
-      });
-    });
+    // .catch((error) => {
+    //   res.status(500).json({
+    //     message : error.message
+    //   });
+    // });
 };
 
 exports.addUserGames = (req, res, next) => {
@@ -37,11 +37,11 @@ exports.addUserGames = (req, res, next) => {
         dataInsert: data,
       });
     })
-    .catch((error) => {
-      res.status(500).json({
-        message : error.message
-      });
-    });
+    // .catch((error) => {
+    //   res.status(500).json({
+    //     message : error.message
+    //   });
+    // });
 };
 
 exports.createUserGames = (req, res, next) => {
@@ -83,11 +83,11 @@ exports.createUserGames = (req, res, next) => {
             dataInsert: data,
           });
         })
-        .catch((error) => {
-          res.status(500).json({
-            message : error.message
-          });
-        });
+        // .catch((error) => {
+        //   res.status(500).json({
+        //     message : error.message
+        //   });
+        // });
     });
   });
   

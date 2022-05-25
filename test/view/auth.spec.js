@@ -64,7 +64,7 @@ describe('Endpoint for view regist and login', () => {
         username: 'testing1011',
         password: '1234567',
       })
-    expect(res.statusCode).toEqual(401)
+    expect(res.statusCode).toEqual(302)
   })
   it('should FALSE LOGIN account', async () => {
     const res = await request(app)
@@ -73,7 +73,7 @@ describe('Endpoint for view regist and login', () => {
         username: 'testbukanakun',
         password: '1',
       })
-    expect(res.statusCode).toEqual(401)
+    expect(res.statusCode).toEqual(302)
   })
   it('should TRUE LOGIN account', async () => {
     const res = await request(app)
@@ -166,6 +166,11 @@ describe('Endpoint for view regist and login', () => {
       password: 'pwMail',
       email: 'iniemail@gmail.com'
     })
+    expect(res.statusCode).toEqual(302)
+  })
+  it('should open logout with port /', async () => {
+    const res = await request(app)
+      .get('/logout')
     expect(res.statusCode).toEqual(302)
   })
 })

@@ -193,9 +193,7 @@ describe('Endpoint for API user games ', () => {
         user_id: 4,
         fullname: "Luthfiyah",
         gender: "Female",
-        date_of_birth: "2002-07-99",
-        place_of_birth: "Purwakarta",
-        address: "Sindangkasih"
+        date_of_birth: "2002-9999"
       })
     expect(res.statusCode).toEqual(500)
   })

@@ -7,10 +7,6 @@ exports.getUserGamesBiodata = (req, res, next) => {
         success: "Success get data user games biodata",
         data: user_games_biodata,
       });
-    })
-    .catch((error) => {
-      if (!error.status) error.status = 500;
-      next(error);
     });
 };
 

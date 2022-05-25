@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18% </span>
+                <span class="strong">16.98% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/50</span>
+                <span class='fraction'>9/53</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18% </span>
+                <span class="strong">16.98% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/50</span>
+                <span class='fraction'>9/53</span>
             </div>
         
             
@@ -187,7 +187,11 @@
 <a name='L122'></a><a href='#L122'>122</a>
 <a name='L123'></a><a href='#L123'>123</a>
 <a name='L124'></a><a href='#L124'>124</a>
-<a name='L125'></a><a href='#L125'>125</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,6 +203,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -207,6 +213,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
@@ -261,6 +268,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,7 +327,9 @@ exports.index = <span class="fstat-no" title="function not covered" >(r</span>eq
 <span class="cstat-no" title="statement not covered" >  UserGames.findAll()</span>
     .then(<span class="fstat-no" title="function not covered" >(u</span>ser_games) =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(user_games){</span>
-<span class="cstat-no" title="statement not covered" >        res.status(200).render('pages/user_games/', { user_games,moment })</span>
+        let user_current = <span class="cstat-no" title="statement not covered" >req.user.dataValues</span>
+        //console.log(user_current)
+<span class="cstat-no" title="statement not covered" >        res.status(200).render('pages/user_games/', { user_games,moment,user_current })</span>
       }else{
 <span class="cstat-no" title="statement not covered" >        res.status(404).render('error', { status: res.status(404),error:'Data tidak ditemukan' })</span>
       }
@@ -330,7 +340,8 @@ exports.index = <span class="fstat-no" title="function not covered" >(r</span>eq
 };
 &nbsp;
 exports.addUserGames = <span class="fstat-no" title="function not covered" >(r</span>eq, res, next) =&gt; {
-<span class="cstat-no" title="statement not covered" >  res.status(200).render("pages/user_games/add")</span>
+  let user_current = <span class="cstat-no" title="statement not covered" >req.user.dataValues</span>
+<span class="cstat-no" title="statement not covered" >  res.status(200).render("pages/user_games/add",{user_current})</span>
 };
 &nbsp;
 exports.createUserGames = <span class="fstat-no" title="function not covered" >(r</span>eq, res, next) =&gt; {
@@ -385,7 +396,8 @@ exports.show = <span class="fstat-no" title="function not covered" >(r</span>eq,
 <span class="cstat-no" title="statement not covered" >      if (!user_games) {</span>
 <span class="cstat-no" title="statement not covered" >        res.status(404).render('errors/error', { status: 404,message: "Failed! Data Not Found!" })</span>
       }
-<span class="cstat-no" title="statement not covered" >      res.status(200).render("pages/user_games/update", { user_games,moment});</span>
+      let user_current = <span class="cstat-no" title="statement not covered" >req.user.dataValues</span>
+<span class="cstat-no" title="statement not covered" >      res.status(200).render("pages/user_games/update", { user_games,moment,user_current});</span>
     })
     .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
 <span class="cstat-no" title="statement not covered" >      res.status(500).render('errors/error', { status: 500,message:  error.message})</span>
@@ -442,7 +454,7 @@ exports.deleteUserGames = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri May 13 2022 21:11:20 GMT+0700 (Waktu Indonesia Barat)
+                at Thu May 26 2022 06:33:17 GMT+0700 (Waktu Indonesia Barat)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

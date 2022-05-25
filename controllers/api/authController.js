@@ -67,10 +67,6 @@ exports.register = async (req, res) => {
             'message': 'Register success, please sign in',
             'data': UserGames
         })
-    }).catch((err) => {
-        return res.status(500).json({
-            'message': 'Failed'
-        })
     })
 }
 

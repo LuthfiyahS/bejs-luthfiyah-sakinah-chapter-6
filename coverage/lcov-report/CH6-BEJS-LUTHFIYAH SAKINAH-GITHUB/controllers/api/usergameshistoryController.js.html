@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.52% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>65/76</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>12/20</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">86.66% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>26/30</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
                 <span class="strong">88.73% </span>
-                <span class="quiet">Lines</span>
+                <span class="quiet">Statements</span>
                 <span class='fraction'>63/71</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">61.11% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>11/18</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">92.85% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>26/28</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">91.04% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>61/67</span>
             </div>
         
             
@@ -228,12 +228,7 @@
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
@@ -245,8 +240,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,11 +364,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -383,18 +373,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -414,10 +404,10 @@ exports.getUserGamesHistory = (req, res, next) =&gt; {
         data: user_games_history,
       });
     })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
-<span class="cstat-no" title="statement not covered" >      if (!error.status) <span class="cstat-no" title="statement not covered" >error.status = 500;</span></span>
-<span class="cstat-no" title="statement not covered" >      next(error);</span>
-    });
+    // .catch((error) =&gt; {
+    //   if (!error.status) error.status = 500;
+    //   next(error);
+    // });
 };
 &nbsp;
 exports.addUserGamesHistory = (req, res, next) =&gt; {
@@ -538,11 +528,6 @@ exports.updateUserGamesHistory = (req, res, next) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (!error.status) <span class="cstat-no" title="statement not covered" >error.status = 500;</span></span>
 <span class="cstat-no" title="statement not covered" >        next(error);</span>
       });
-    }, <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.log(err)</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        'message': 'Failed'
-      })
     })
   }, (err) =&gt; {
     console.log(err)
@@ -556,15 +541,15 @@ exports.deleteUserGamesHistory = (req, res, next) =&gt; {
   const { id } = req.params;
   UserGamesHistory.findByPk(id)
     .then((data) =&gt; {
-      if (!data) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!data) {
         const error = new Error(`Could not find user games with id = ${id}`);
         error.status = 404;
         throw error;
       }
-      UserGamesHistory.destroy({
+<span class="cstat-no" title="statement not covered" >      UserGamesHistory.destroy({</span>
         where: { id },
       });
-      res.status(200).json({
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({</span>
         success: `Success delete user games history with id = ${id}`
       });
     })
@@ -580,7 +565,7 @@ exports.deleteUserGamesHistory = (req, res, next) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri May 13 2022 21:11:20 GMT+0700 (Waktu Indonesia Barat)
+                at Thu May 26 2022 06:33:17 GMT+0700 (Waktu Indonesia Barat)
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -56,4 +56,15 @@ describe('Endpoint API ', () => {
     expect(res.statusCode).toEqual(200)
     expect(res.body).toHaveProperty('message')
   })
+  
+
+  it('/login : Should NOT login because URL is not found', async () => {
+    const res = await request(app)
+      .post('/loginkajshdkj')
+      .send({
+        username: 'abcdefg',
+        password: '1',
+      })
+    expect(res.statusCode).toEqual(404)
+  })
 })
